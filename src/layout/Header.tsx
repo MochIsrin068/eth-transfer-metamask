@@ -3,7 +3,15 @@ import EthLogo from "../assets/eth-logo.png";
 import MetamaskLogo from "../assets/metamask-logo.png";
 import Button from "../components/Button";
 
-export default function Header() {
+type TPropsHeader = {
+  onConnectDisconnect: () => void;
+  isAccountConnected: boolean;
+};
+
+export default function Header({
+  onConnectDisconnect,
+  isAccountConnected,
+}: TPropsHeader) {
   return (
     <section>
       <menu className="flex items-center justify-between bg-white w-full py-3 lg:py-4 px-4 lg:px-14 z-10 relative">
@@ -11,12 +19,19 @@ export default function Header() {
           <img src={EthLogo} alt="ETH" className="w-7 lg:w-9 mr-2" />
           <h3 className="font-extrabold text-base lg:text-xl">ETH Transfer</h3>
         </div>
-        {/* <Button label="Connect E-wallet" /> */}
-        <img
-          src={MetamaskLogo}
-          alt="metamask-logo"
-          className="w-10 mr-2 bg-gray-200 p-2 rounded-full"
-        />
+        <div className="flex items-center">
+          {isAccountConnected && (
+            <img
+              src={MetamaskLogo}
+              alt="metamask-logo"
+              className="w-10 mr-4 bg-gray-200 p-2 rounded-full"
+            />
+          )}
+          <Button
+            label={isAccountConnected ? "Disconnect" : "Connect E-wallet"}
+            onClick={onConnectDisconnect}
+          />
+        </div>
       </menu>
       <img
         src={TopWave}

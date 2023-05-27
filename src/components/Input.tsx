@@ -4,11 +4,11 @@ type TPropsInput = {
   label: string;
   type?: string;
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   maxLength?: number;
   step?: string;
   min?: string;
-  onChange?: ChangeEventHandler;
+  onChange?: ChangeEventHandler | any;
 };
 
 export default function Input({
