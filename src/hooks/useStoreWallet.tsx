@@ -5,8 +5,7 @@ import { TMetaMaskState, TState } from "../types/metaMaskStore.type";
 const metamaskInitState = {
   wallet: null,
   isMetaMaskInstalled: false,
-  status: "pageNotLoaded",
-  //   status: "loading",
+  status: "disconnected",
   balance: null,
 };
 
@@ -15,13 +14,9 @@ const useStoreWallet = create(
     (set) => ({
       metaMaskData: metamaskInitState,
       setMetaMaskData: (data: TMetaMaskState) =>
-        set((state: TState) => {
-          const { wallet, balance } = data;
+        set(() => {
           const newState = {
-            ...state.metaMaskData,
-            wallet,
-            balance,
-            status: "idle",
+            ...data,
           };
           return {
             metaMaskData: newState,

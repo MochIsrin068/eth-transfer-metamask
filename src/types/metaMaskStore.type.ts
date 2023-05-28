@@ -1,4 +1,4 @@
-export type TStatus = "loading" | "idle" | "pageNotLoaded";
+export type TStatus = "loading" | "connected" | "disconnected";
 export type TMetaMaskState = {
   wallet: string | null;
   isMetaMaskInstalled: boolean | undefined;
